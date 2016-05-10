@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Example 01.01 - Basic skeleton</title>
+    <script type="text/javascript" src="/js/three.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.9.0.js"></script>
+        <style type="text/css">
+            #WebGL-output{
+                border: 1px solid #333;
+                cursor: pointer;
+                width: 100%;
+                height: 600px;
+                background-color: #EEEEEE;
+                color:#222;
+            }
+
+        </style>
+</head>
+<body>
+
+<div id="WebGL-output">
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        var scene = new THREE.Scene();
+        var geometry = new THREE.Geometry();
+
+        var myWebGl=document.getElementById('WebGL-output');
+        width = myWebGl.clientWidth;
+        height = myWebGl.clientHeight;
+
+        renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+        renderer.setSize(width, height);
+        myWebGl.appendChild(renderer.domElement);
+        renderer.setClearColor(0xFFFFFF, 1.0);
+
+
+
+
+        //画一个点
+        var point1 = new THREE.Vector3(4,8,9);
+
+        point1.set(4,8,9);
+        //画一条线
+        var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors } );
+
+        var color1 = new THREE.Color( 0x444444 ),
+
+        color2 = new THREE.Color( 0xFF0000 );
+
+        var p1 = new THREE.Vector3( -100, 0, 100 );
+        var p2 = new THREE.Vector3( 100, 0, -100 );
+
+        
+        geometry.vertices.push(p1);
+        geometry.vertices.push(p2);
+        geometry.colors.push( color1, color2 );
+        var line = new THREE.Line( geometry, material, THREE.LinePieces );
+
+        scene.add(line);
+
+
+
+
+    });
+
+</script>
+</body>
+</html>
